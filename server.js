@@ -36,9 +36,6 @@ app.get('/', (req, res) => {
             console.log("msg entered");
         });
         readline.close();
-    })
-    })
-    
         exec("cat chat.txt", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -50,7 +47,11 @@ app.get('/', (req, res) => {
             }
         console.log("data ==============" + stdout);
      res.render('chat.ejs', {data :stdout.split('\n')});
-        });
+        })
+    })
+    })
+    
+      
         //console.log(`Hi ${name}!`)
 });
 
