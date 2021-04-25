@@ -1,0 +1,15 @@
+<% var i =0;
+   for(i=0; i < data.length ; i++)
+   {
+       %>
+       <br>
+       <h1><%= data[i]%></h1>
+       <br>
+       <%
+   }
+%>
+<br>
+<br>
+<form method="POST" action="/reply">
+    REPLY : <input  type="text" name="reply">
+</form>
