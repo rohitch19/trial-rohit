@@ -13,9 +13,8 @@ const readline = require('readline').createInterface({
 
 
 app.get('/', (req, res) => {
-    console.log(`first one stdout: ${stdout}`);
     readline.question(`Reply : `, name => {
-        exec("echo "+"Rohit : "+name+">> chat.txt", (error, stdout2, stderr) => {
+        exec("echo "+"Rohit : "+name+">> chat.txt", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
                 return;
@@ -35,16 +34,12 @@ app.get('/', (req, res) => {
                     return;
                 }
             console.log("data ==============" + stdout);
-         res.render('chat.ejs', {data :stdout.split('\n')});
+            global.data = stdout;
             })
         })
         readline.close();
-        
     })
-    })
-    
-      
-        //console.log(`Hi ${name}!`)
+    res.render('chat.ejs', {data : data.split('\n')});
 });
 
 app.post('/reply', (req, res) => {
