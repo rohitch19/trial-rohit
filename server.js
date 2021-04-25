@@ -13,15 +13,6 @@ const readline = require('readline').createInterface({
 
 
 app.get('/', (req, res) => {
-  exec("cat chat.txt", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
     console.log(`first one stdout: ${stdout}`);
     readline.question(`Reply : `, name => {
         exec("echo "+"Rohit : "+name+">> chat.txt", (error, stdout2, stderr) => {
