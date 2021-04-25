@@ -22,8 +22,7 @@ app.get('/', (req, res) => {
         console.log(`stderr: ${stderr}`);
         return;
     }
-    console.log(`stdout: ${stdout}`);
-    });
+    console.log(`first one stdout: ${stdout}`);
     readline.question(`Reply : `, name => {
         exec("echo "+"Rohit : "+name+">> chat.txt", (error, stdout2, stderr) => {
             if (error) {
@@ -37,7 +36,9 @@ app.get('/', (req, res) => {
             console.log("msg entered");
         });
         readline.close();
-    });
+    })
+    })
+    
         exec("cat chat.txt", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
