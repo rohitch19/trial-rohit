@@ -33,20 +33,21 @@ app.get('/', (req, res) => {
                 console.log(`stderr: ${stderr}`);
                 return;
             }
-            exec("cat chat.txt", (error, stdout, stderr) => {
-                if (error) {
-                    console.log(`error: ${error.message}`);
-                    return;
-                }
-                if (stderr) {
-                    console.log(`stderr: ${stderr}`);
-                    return;
-                }
-            console.log("data ==============" + stdout);
-         res.render('chat.ejs', {data : JSON.stringify(stdout) });
-            });
+            
         });
         readline.close();
+        exec("cat chat.txt", (error, stdout, stderr) => {
+            if (error) {
+                console.log(`error: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.log(`stderr: ${stderr}`);
+                return;
+            }
+        console.log("data ==============" + stdout);
+     res.render('chat.ejs', {data :stdout});
+        });
     });
         //console.log(`Hi ${name}!`)
         
