@@ -34,20 +34,21 @@ app.get('/', (req, res) => {
                 return;
             }
             console.log("msg entered");
-        });
-        readline.close();
-        exec("cat chat.txt", (error, stdout, stderr) => {
-            if (error) {
-                console.log(`error: ${error.message}`);
-                return;
-            }
-            if (stderr) {
-                console.log(`stderr: ${stderr}`);
-                return;
-            }
-        console.log("data ==============" + stdout);
-     res.render('chat.ejs', {data :stdout.split('\n')});
+            exec("cat chat.txt", (error, stdout, stderr) => {
+                if (error) {
+                    console.log(`error: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.log(`stderr: ${stderr}`);
+                    return;
+                }
+            console.log("data ==============" + stdout);
+         res.render('chat.ejs', {data :stdout.split('\n')});
+            })
         })
+        readline.close();
+        
     })
     })
     
