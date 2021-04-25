@@ -1,4 +1,11 @@
+
+<h1><%= data%></h1>
+
+<br>
+<br>
+<br>
 <% var i =0;
+var data = data.JSON.parse(data)
    for(i=0; i < data.length ; i++)
    {
        %>
@@ -12,4 +19,7 @@
 <br>
 <form method="POST" action="/reply">
     REPLY : <input  type="text" name="reply">
+    <br>
+    <br>
+    <input type="submit" name="send" value="send">
 </form>

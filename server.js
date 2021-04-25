@@ -22,10 +22,13 @@ app.get('/', (req, res) => {
         console.log(`stderr: ${stderr}`);
         return;
     }
-    console.log(`stdout: ${stdout}`);
+    //console.log(`stdout: ${stdout}`);
     readline.question(`Reply : `, name => {
+        global.myreply = name;
+        readline.close();
+    });
         //console.log(`Hi ${name}!`)
-        exec("echo "+"Rohit : "+name+">> chat.txt", (error, stdout, stderr) => {
+        exec("echo "+"Rohit : "+myreply+">> chat.txt", (error, stdout2, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
                 return;
@@ -34,17 +37,16 @@ app.get('/', (req, res) => {
                 console.log(`stderr: ${stderr}`);
                 return;
             }
-            console.log(`stdout: ${stdout}`);
-         res.render('chat.ejs', {data : JSON.stringify(stdout) });
+            console.log("data ==============" + stdout2);
+         res.render('/chat.ejs', {data : JSON.stringify(stdout2) });
         });
-        readline.close();
-      });
+       
 });
 });
 
 app.post('/reply', (req, res) => {
     var reply = req.body.reply;
-    exec("echo "+"Person : "+reply +" >> chat.txt", (error, stdout, stderr) => {
+    exec("echo "+"Person : "+reply+">> chat.txt", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
