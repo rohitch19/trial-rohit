@@ -23,8 +23,9 @@ app.get('/', (req, res) => {
         return;
     }
     console.log(`stdout: ${stdout}`);
+    });
     readline.question(`Reply : `, name => {
-        exec("echo "+"Rohit : "+myreply+">> chat.txt", (error, stdout2, stderr) => {
+        exec("echo "+"Rohit : "+name+">> chat.txt", (error, stdout2, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
                 return;
@@ -33,9 +34,10 @@ app.get('/', (req, res) => {
                 console.log(`stderr: ${stderr}`);
                 return;
             }
-            
+            console.log("msg entered");
         });
         readline.close();
+    });
         exec("cat chat.txt", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -46,13 +48,9 @@ app.get('/', (req, res) => {
                 return;
             }
         console.log("data ==============" + stdout);
-     res.render('chat.ejs', {data :stdout});
+     res.render('chat.ejs', {data :stdout.split('\n')});
         });
-    });
         //console.log(`Hi ${name}!`)
-        
-       
-});
 });
 
 app.post('/reply', (req, res) => {
