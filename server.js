@@ -23,9 +23,9 @@ app.get('/', (req, res) => {
         return;
     }
     console.log(`stdout: ${stdout}`);
-    readline.question(`Reply`, name => {
+    readline.question(`Reply : `, name => {
         //console.log(`Hi ${name}!`)
-        exec("cat chat.txt >> Rohit : "+ name +" || cat chat.txt", (error, stdout, stderr) => {
+        exec("echo "+"Rohit : "+name+">> chat.txt", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
                 return;
@@ -35,17 +35,16 @@ app.get('/', (req, res) => {
                 return;
             }
             console.log(`stdout: ${stdout}`);
-            return res.render('chat.ejs', {data : JSON.stringify(stdout) });
+         res.render('chat.ejs', {data : JSON.stringify(stdout) });
         });
         readline.close();
       });
 });
-res.send('Hello World!');
 });
 
 app.post('/reply', (req, res) => {
     var reply = req.body.reply;
-    exec("cat chat.txt >> Person : "+ reply , (error, stdout, stderr) => {
+    exec("echo "+"Person : "+reply +" >> chat.txt", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
